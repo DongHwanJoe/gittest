@@ -5,15 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/webapp/resources/test.jsp</title>
+<title>/views/cafe/update.jsp</title>
 </head>
 <body>
-	<p>test.jsp페이지 입니다.</p>
-
- <p> thdtkddjs jsp 페이지를 수정했습니다</p>
-
-	<p>park 한줄 추가했습니다</p>
-
-	<p>선현이가 추가. 한번 더 테스트 :)</p>
+	<script>
+		alert("${id}님의 글을 수정 했습니다.")
+		location.href="${pageContext.request.contextPath}/cafe/detail?num=${param.num }";
+	</script>
 </body>
 </html>

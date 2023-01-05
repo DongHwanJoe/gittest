@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gura.boot07.exception.NotDeleteException;
 import com.gura.git01.cafe.dao.CafeCommentDao;
 import com.gura.git01.cafe.dao.CafeDao;
 import com.gura.git01.cafe.dto.CafeCommentDto;
 import com.gura.git01.cafe.dto.CafeDto;
+import com.gura.git01.exception.NotDeleteException;
 
 @Service
 public class CafeServiceImpl implements CafeService{

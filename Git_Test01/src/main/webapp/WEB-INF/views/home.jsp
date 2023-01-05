@@ -29,6 +29,11 @@
 				<li>${tmp }</li>
 			</c:forEach>
 		</ul>
+		
+		<h3>시험용 페이지 링크</h3>
+		<ul>
+			<li><a href="${pageContext.request.contextPath}/index">인덱스 페이지 기본구성</a></li>
+		</ul>
 	</div>
 </body>
 </html>
