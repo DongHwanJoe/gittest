@@ -5,15 +5,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/webapp/resources/test.jsp</title>
+<title>/views/home.jsp</title>
 </head>
 <body>
-	<p>test.jsp페이지 입니다.</p>
+	<div class="container">
+		<h1>인덱스 페이지 입니다.</h1>
 
- <p> thdtkddjs jsp 페이지를 수정했습니다</p>
-
-	<p>park 한줄 추가했습니다</p>
-
-	<p>선현이가 추가</p>
+		<h3>공지사항</h3>
+		<ul>
+			<c:forEach var="tmp" items="${noticeList }">
+				<li>${tmp }</li>
+			</c:forEach>
+		</ul>
+	</div>
 </body>
 </html>
