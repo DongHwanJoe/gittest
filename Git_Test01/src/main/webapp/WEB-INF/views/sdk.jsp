@@ -11,6 +11,7 @@
 <body>
 	<div class="container">
 		<p>일단 만들었습니다</p>
+		<p>한번 더 연습!</p>
 	</div>
 </body>
 </html>
