@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gura.boot07.exception.NotDeleteException;
 import com.gura.git01.cafe.dao.CafeCommentDao;
 import com.gura.git01.cafe.dao.CafeDao;
 import com.gura.git01.cafe.dto.CafeCommentDto;
@@ -254,10 +253,6 @@ public class CafeServiceImpl implements CafeService{
 		//삭제할 댓글 정보를 읽어와서 
 		CafeCommentDto dto=cafeCommentDao.getData(num);
 		String id=(String)request.getSession().getAttribute("id");
-		//글 작성자와 로그인된 아이디와 일치하지 않으면
-		if(!dto.getWriter().equals(id)) {
-			throw new NotDeleteException("남의 댓글 지우면 혼난당!");
-		}
 	      
 		cafeCommentDao.delete(num);
 	}

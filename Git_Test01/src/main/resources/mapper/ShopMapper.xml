@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shop">
+<!-- shopDto로 alias 어노테이션이 필요합니다 -->
+<!-- 검색기능은 가게이름만 일단 정했고, 위치정보를 받아서 주변 상점을 표시하는 기능까지 구현하면 좋을것같습니다. -->
+
+   <sql id="searchCondition">
+      <choose>
+         <when test="name != null">
+            WHERE title LIKE '%'||#{title}||'%' OR content LIKE '%'||#{content}||'%'
+         </when>
+         <when test="content != null">
+            WHERE content LIKE '%'||#{content}||'%'
+         </when>
+         <when test="addr_x != null and addr_y != null">
+            WHERE addr_x between #{addr_x}-10 and #{addr_y}+10 and addr_y between #{addr_y}-10 and #{addr_y}+10
+         </when>
+      </choose>
+   </sql>
+	<insert id="insert" parameterType="shopDto">
+		insert into shop
+		(num, name, genre, phone, hashtag, likeCount, addr_x, addr_y, content, content_img)
+		values( shop_seq.nextval, #{name}, #{gerne}, #{phone}, null, 0, #{addr_x}, #{addr_y}, #{content}, #{content_img})
+	</insert>
+	
+	<update id="update" parameterType="shopDto">
+		update shop
+		set hashtag = #{hashtag}
+		where id=#{num}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from shop
+		where num=#{num}
+	</delete>
+	
+	<update id="plusLikeCount" parameterType="int">
+      UPDATE shop
+      SET likeCount=likeCount+1
+      WHERE num=#{num}
+   </update>
+   
+   	<update id="minusLikeCount" parameterType="int">
+      UPDATE shop
+      SET likeCount=likeCount-1
+      WHERE num=#{num}
+   </update>
+	
+	<select id="getData" parameterType="int" resultType="shopDto">
+		select num, name, genre, phone, hashtag, likeCount, addr_x, addr_y, content, content_img
+		from users
+		where num=#{num}
+	</select>
+	
+	<select id="getList" parameterType="shopDto" resultType="shopDto">
+		   SELECT *
+	      	FROM
+	         (SELECT result1.*, ROWNUM AS rnum
+	         FROM
+	            (SELECT num, name, genre, phone, hashtag, likeCount, addr_x, addr_y, content
+	            FROM board_cafe
+	            <include refid="searchCondition"/>
+	            ORDER BY num DESC) result1)
+	      <![CDATA[ 
+	      WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
+	      ]]>
+	</select>
+</mapper>
