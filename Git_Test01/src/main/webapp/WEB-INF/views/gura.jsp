@@ -6,11 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>/views/gura.jsp</title>
 </head>
 <body>
-	<div class="container">
-		<p>일단 만들었습니다</p>
-	</div>
+	<p>기능1</p>
+	<p>기능2</p>
+	<p>기능3 미션 성공</p>
+	<p>새로운 기능 추가함</p>
 </body>
 </html>
