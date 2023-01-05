@@ -1,6 +1,5 @@
 package com.gura.git01.users.controller;
 
-import org.apache.catalina.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +29,7 @@ public class UsersController {
 	//회원 가입 요청처리
 	@RequestMapping(method = RequestMethod.POST, value = "/users/signup")
 	public ModelAndView signup(ModelAndView mView, UsersDto dto) {
-		Service.addUser(dto);
+		service.addUser(dto);
 		mView.setViewName("users/signup");
 		return mView;
 	}
