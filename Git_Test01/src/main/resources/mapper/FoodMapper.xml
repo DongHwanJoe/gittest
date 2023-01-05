@@ -3,6 +3,7 @@
 <mapper namespace="food">
 <!-- shopDto로 alias 어노테이션이 필요합니다 -->
 <!-- 검색기능은 가게이름만 일단 정했고, 위치정보를 받아서 주변 상점을 표시하는 기능까지 구현하면 좋을것같습니다. -->
+<!-- reviewGrade는 foodService가 아니라 foodreviewService에서 작성하는게 좋아보입니다. -->
 
    <sql id="searchCondition">
       <choose>
@@ -22,7 +23,7 @@
 		(num ,title ,content,phone, addr_x, addr_y, imagePath, categorie,reviewCount, reviewGrade)
 		values( board_food_seq.nextval, #{title}, #{content}, #{phone}, #{addr_x}, #{addr_y}, #{imagePath}, #{categorie}, #{reviewCount}, #{reviewGrade})
 	</insert>
-	
+	<!-- 바뀔만한것만 일단 넣었습니다. imagePath는 구현이 짜증날것같아서 일단은 제외하는걸로. -->
 	<update id="update" parameterType="shopDto">
 		update board_food
 		set content = #{content}, phone=#{phone}
@@ -34,10 +35,21 @@
 		where num=#{num}
 	</delete>
 	
-	<update id="plusReviewCount" parameterType="int">
+	<update id="addReviewCount" parameterType="int">
       UPDATE board_food
       SET reviewCount=reviewCount+1
       WHERE num=#{num}
+   </update>
+   <!-- 좋아요 싫어요 증감용 -->
+   <update id="plusReviewGrade" parameterType="shopDto">
+   		update board_food
+   		set reviewGrade=reviewGrade +1
+   		where num=#{num}
+   </update>
+   <update id="minusReviewGrade" parameterType="shopDto">
+   		update board_food
+   		set reviewGrade=reviewGrade -1
+   		where num=#{num}
    </update>
 	
 	<select id="getData" parameterType="int" resultType="shopDto">
