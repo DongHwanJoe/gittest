@@ -1,5 +1,9 @@
 package com.gura.git01.users.controller;
 
+import java.net.URLEncoder;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +42,35 @@ public class UsersController {
 	@RequestMapping(method=RequestMethod.GET, value="/users/loginform")
 	public String loginForm() {		
 			return "users/loginform";
-		}
+	}
+	
+	// 로그인 요청 처리
+	@RequestMapping("/users/login")
+	public ModelAndView login(ModelAndView mView, UsersDto dto, String url, HttpSession session) {
+		/*
+		 * 	서비스에서 비즈니스 로직을 처리할때 필요로 하는 객체를 컨트롤러에서 직접 전달을 해주어야 한다.
+		 * 	주로 HttpServletRequest, HttpServletResponse, HttpSession, ModelAndView
+		 * 	등등의 객체이다.
+		 */
+		service.loginProcess(dto, session);
+		
+		// 로그인 후에 가야할 목적지 정보를 인코딩하지 않는것과 인코딩 한 것을 모두 ModelAndView 객체에 담고
+		String encodedUrl=URLEncoder.encode(url);
+		mView.addObject("url", url);
+		mView.addObject("encodedUrl", encodedUrl);
+		
+		// viewPage 로 forward 이동해서 응답한다.
+		mView.setViewName("redirect:/");
+		return mView;
+	}
+	
+	// 로그아웃 요청 처리
+	@RequestMapping("/users/logout")
+	public String logout(HttpSession session) {
+		// 세션에서 id 라는 키 값으로 저장된 값 삭제
+		session.removeAttribute("id");
+		return "users/logout";
+	}
 	
 		
 }
