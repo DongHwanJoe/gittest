@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /*
  *  [ jsp 페이지를 사용하기 위한 설정 ]
@@ -35,17 +34,5 @@ public class HomeController {
 		request.setAttribute("noticeList", noticeList);
 		
 		return "home";
-	}
-	
-	@GetMapping("/users/info")
-	@ResponseBody
-	public String info() {
-		return "info ok";
-	}
-	
-	@GetMapping("/users/loginform")
-	@ResponseBody
-	public String loginform() {
-		return "loginform ok";
 	}
 }
