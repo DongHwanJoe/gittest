@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +25,7 @@
         box-shadow: 0px 5px 20px 0px grey;
 	    border-right: thin;
         z-index: 3;
+        min-width: 1320px;
     }
     .header{
         grid-area: header;
@@ -69,7 +71,30 @@
     .bottom{
        grid-area : bot; 
     }
+    .content_images{
+        height : 250px;
 
+    }
+    .content_photo_1>img, .content_photo_2>img{
+        width :200px;
+        margin: 0.5px;
+        margin-right: -5px;
+    }
+    .main_title{
+        background-color: antiquewhite;
+    }
+    table{
+        background-color: antiquewhite;
+    }
+    th{
+        width :200px;
+    }
+    .choiced_table{
+        background-color: skyblue;
+    }
+    .choiced_table>td{
+        text-align: left;
+    }
 </style>
 <body>
 
@@ -77,13 +102,88 @@
         <div class="header">로그인 된 사용자 아이디 표시</div>
         <div class="main_banner">메인 배너 표시</div>
         <div class="side_menu_a">side A</div>
-        <div class="main_content">main content</div>
+        <div class="main_content">
+            <div class="content_images">
+                <div class="content_photo_1">
+                    <img src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201702/27/117f5b49-1d09-4550-8ab7-87c0d82614de.jpg" alt="">
+                    <img src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201702/27/117f5b49-1d09-4550-8ab7-87c0d82614de.jpg" alt="">
+                    <img src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201702/27/117f5b49-1d09-4550-8ab7-87c0d82614de.jpg" alt="">
+                </div>
+                <div class="content_photo_2">
+                    <img src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201702/27/117f5b49-1d09-4550-8ab7-87c0d82614de.jpg" alt="">
+                    <img src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201702/27/117f5b49-1d09-4550-8ab7-87c0d82614de.jpg" alt="">
+                    <img src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201702/27/117f5b49-1d09-4550-8ab7-87c0d82614de.jpg" alt="">
+                </div>
+
+
+                <div class="main_title">
+                    <div id="map" style="width: 200px; height: 150px; margin: auto; float: right; margin-right: 20px;"></div>
+
+                    <br><br>
+                    <Strong>삼겹살 타이어보다 싸다!</Strong> 
+                    <p>방문 NNN회, 리뷰 MMM 회</p>
+                    <p>별점 ★ A.BB 점 </p>
+                    <p style="margin:0px;">　</p>
+                </div>
+                <table class="main_table">
+                    <tbody>
+                        <tr>
+                            <th class="choiced_table">가게 정보</th>
+                            <th>메뉴</th>
+                            <th>리뷰</th>
+                            <th>사진</th>
+                        </tr>
+                        <tr class="choiced_table">
+                            <td colspan="5">&nbsp; </td>
+                        </tr>
+                        <tr class="choiced_table">
+                            <td colspan="5">&nbsp; 영업 시간 : 문열고 싶을 때 부터 닫고 싶을 때 까지</td>
+                        </tr>
+                        <tr class="choiced_table">
+                            <td colspan="5">&nbsp; 전화 번호 : 안알랴줌</td>
+                        </tr>
+                        <tr class="choiced_table">
+                            <td colspan="5">&nbsp; 결제 수단 : 아무거나</td>
+                        </tr>
+                        <tr class="choiced_table">
+                            <td colspan="5">&nbsp; 주소 : 위에 있음</td>
+                        </tr>
+                        <tr class="choiced_table">
+                            <td colspan="5">&nbsp; 단체 손님 환영</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            
+            
+                
+			
+
+
+			
+        </div>
         <div class="side_menu_b">side B</div>
         <div class="bottom">　</div>
 
 
 
     </div>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9xl3ekksy5"></script>
+    <script>
+        
+        let map = new naver.maps.Map('map', {
+            center : new naver.maps.LatLng(37.498778, 127.031662),
+            zoom : 18
+        });
+
+        let marker = new naver.maps.Marker({
+            position : new naver.maps.LatLng(37.498778, 127.031662),
+            map: map,
+            title : 'Acorn Academy'
+        });
+    </script>        
+
     <div class="footer">
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
           <symbol id="bootstrap" viewBox="0 0 118 94">
