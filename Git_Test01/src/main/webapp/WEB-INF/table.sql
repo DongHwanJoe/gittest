@@ -1,21 +1,25 @@
 -- 사용자(회원) 정보를 저장할 테이블
 CREATE TABLE users(
-	id VARCHAR2(100) PRIMARY KEY,
-	pwd VARCHAR2(100) NOT NULL,
-	email VARCHAR2(100),
-	profile VARCHAR2(100), --프로필 이미지 경로를 저장할 칼럼
-	regdate DATE
+    id VARCHAR2(100) PRIMARY KEY,
+    pwd VARCHAR2(100) NOT NULL,
+    email VARCHAR2(100),
+    profile VARCHAR2(100), --프로필 이미지 경로를 저장할 칼럼
+    regdate DATE
 );
 
 -- 가게 리스트 테이블
 CREATE TABLE board_food( -- 테이블명 추후 변경 예정
-	num NUMBER PRIMARY KEY, -- 가게 고유 번호
-	title VARCHAR2(100), -- 가게이름
-	content CLOB, -- 소개 내용
-	imagePath VARCHAR2(100), -- 섬네일 또는 가게 대표이미지
-	categorie VARCHAR2(100), -- 음식 분류
-	reviewCount NUMBER, -- 리뷰/댓글 개수
-	reviewGrade NUMBER -- 평점 필요하면 타입 변경
+    num NUMBER PRIMARY KEY, -- 가게 고유 번호
+    title VARCHAR2(100) not null, -- 가게이름
+    phone number, -- 가게번호
+    addr_x number, -- x축 좌표
+    addr_y number, -- y축 좌표
+    title VARCHAR2(100), -- 가게이름
+    content CLOB, -- 소개 내용
+    imagePath VARCHAR2(100), -- 섬네일 또는 가게 대표이미지
+    categorie VARCHAR2(100), -- 음식 분류
+    reviewCount NUMBER, -- 리뷰/댓글 개수
+    reviewGrade NUMBER -- 평점 필요하면 타입 변경
 );
 
 -- 게시들의 번호를 얻어낼 시퀀스
@@ -31,9 +35,8 @@ CREATE TABLE board_food_review( -- 테이블명 추후 변경 예정
     ref_group NUMBER, 
     review_group NUMBER,
     deleted CHAR(3) DEFAULT 'no', --  리뷰 삭제여부
-    grade CHAR(3) DEFAULT 'no', -- 평점 작성 여부
+    -- grade CHAR(3) DEFAULT 'no', -- 평점 작성 여부, 2023/1/5시점에는 제외하는걸로 하겠습니다.
     regdate DATE
 );
 -- 댓글의 글번호를 얻어낼 시퀀스
 CREATE SEQUENCE board_food_review_seq;
-
